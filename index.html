@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elite Cheats - Premium HaxBall Cheats</title>
+    
+    <!-- Ikona favicon -->
+    <link rel="icon" href="favicon-elite-cheats.svg" type="image/x-icon">
+    <!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=TWÓJ_CLIENT_ID"></script>
+
+
     <style>
+
         :root {
             --primary-color: #6c12c7;
             --secondary-color: #00eeff;
@@ -82,7 +90,10 @@
         }
         
         .hero {
-            background-image: url('haxball1.png') center/cover no-repeat;
+            background-image: url('haxball-background.png');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
             padding: 120px 0;
             text-align: center;
             position: relative;
@@ -592,7 +603,79 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
+        
+        /* Video link styles */
+        .video-link {
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        
+    .paypal-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #111;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    .paypal-info img {
+      height: 40px;
+    }
+
+    .paypal-info span {
+      font-size: 1rem;
+      color: #aaa;
+    }
+
+    .paypal-icon-footer img {
+      height: 30px;
+      margin-top: 0.5rem;
+    }
+        footer {
+      background: #111;
+      padding: 2rem;
+      text-align: center;
+      color: #666;
+      margin-top: 4rem;
+    }
     </style>
+    <script>
+document.getElementById('opmode-buy').addEventListener('click', function () {
+  const container = document.createElement('div');
+  container.id = 'paypal-temp-button';
+  document.body.appendChild(container);
+
+  paypal.Buttons({
+    style: { layout: 'vertical', color: 'blue', shape: 'pill', label: 'paypal' },
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: '19.99' }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        alert('Dziękujemy za zakup, ' + details.payer.name.given_name + '!');
+        // Tu można dodać przekierowanie lub zapis na backendzie
+      });
+    },
+    onCancel: function() {
+      alert('Płatność została anulowana.');
+      container.remove();
+    }
+  }).render('#paypal-temp-button');
+});
+</script>
+
 </head>
 <body>
     <header>
@@ -614,7 +697,7 @@
         <div class="container hero-content">
             <h1>Dominate HaxBall</h1>
             <p>Our advanced HaxBall cheats give you the edge that others can only dream of. 
-               Easy to use, one-minute setup solutions for the most demanding players.</p>
+               Best HaxBall cheats for the most demanding players.</p>
             <a href="#products" class="btn">View Products</a>
         </div>
     </section>
@@ -634,10 +717,6 @@
                     <div class="counter-number">1 min</div>
                     <div class="counter-label">Setup time</div>
                 </div>
-                <div class="counter-item">
-                    <div class="counter-number">100%</div>
-                    <div class="counter-label">HaxBall specialized</div>
-                </div>
             </div>
         </div>
     </section>
@@ -649,23 +728,24 @@
                 <div class="product-card">
                     <div class="product-image">
                         <span class="badge badge-bestseller">BESTSELLER</span>
-                        <img src="/api/placeholder/400/200" alt="HaxBall Pro">
-                        <div class="play-button">▶</div>
+                        <img src="haxball2.png" alt="HaxBall Pro" width="400" height="200">
+                        <a href="https://youtu.be/P9xfmq_fBvY?si=W6RkmqX-czNBt0LK" class="video-link" target="_blank">
+                            <div class="play-button">▶</div>
+                        </a>
                     </div>
                     <div class="product-details">
                         <h3 class="product-name">OP Mode</h3>
                         <div class="rating">★★★★</div>
-                        <p class="product-description">Advanced aiming and ball control system with real-time player movement analysis. 
-                            Smooth tracking and perfect positioning for total HaxBall domination.</p>
+                        <p class="product-description">With OP Mode, you become more unpredictable to your opponents, improving your movement significantly. Your fake moves become much more effective, and ball control is enhanced for better gameplay.</p>
                         <ul style="margin-left: 20px; margin-bottom: 15px; color: #b8b8b8;">
-                            <li>Auto-aim for perfect shots</li>
-                            <li>Intelligent ball trajectory prediction</li>
-                            <li>Works with any mouse or keyboard</li>
-                            <li>One-click activation</li>
+                            <li>Enhanced movement control</li>
+                            <li>More effective fake x</li>
+                            <li>Better ball contact precision</li>
+                            <li>Aimbot included</li>
                         </ul>
                         <div class="product-meta">
                             <div class="product-price">$19.99</div>
-                            <button class="product-buy">Buy Now</button>
+                            <button class="product-buy" id="opmode-buy">Buy Now</button>
                         </div>
                     </div>
                 </div>
@@ -677,15 +757,16 @@
                         <div class="play-button">▶</div>
                     </div>
                     <div class="product-details">
-                        <h3 class="product-name">Supermode</h3>
+                        <h3 class="product-name">SUPER Mode</h3>
                         <div class="rating">★★★★★</div>
-                        <p class="product-description">See everything - without exceptions. Advanced technology showing opponent positions, 
-                            movement patterns, and predicted ball trajectories for complete game awareness.</p>
+                        <p class="product-description">The most powerful cheat in HaxBall. Similar to OP Mode but significantly stronger, Supermode gives you unparalleled control and precision that will make you unstoppable on the field.</p>
                         <ul style="margin-left: 20px; margin-bottom: 15px; color: #b8b8b8;">
-                            <li>Customizable visibility settings</li>
-                            <li>Player speed and direction indicators</li>
-                            <li>Audio alerts for scoring opportunities</li>
-                            <li>Compatible with HaxBall Pro</li>
+                            <li>Advanced movement mechanics</li>
+                            <li>Superior ball control</li>
+                            <li>Maximum unpredictability</li>
+                            <li>Elite opponent-blocking precision</li>
+                            <li>Amazing fake x</li>
+                        
                         </ul>
                         <div class="product-meta">
                             <div class="product-price">$39.99</div>
@@ -765,10 +846,17 @@
         </div>
     </section>
 
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 class="section-heading">FAQ</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                </body>
-                </html>
+<div class="paypal-info">
+        <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal">
+        <span>Payment handled via PayPal – secure and instant.</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>© 2025 Elite Cheats – All rights reserved.
+</div>
+    <div class="paypal-icon-footer">
+      <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal Akceptowany">
+    </div>
+  </footer>
